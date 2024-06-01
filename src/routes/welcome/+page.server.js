@@ -1,19 +1,29 @@
-// src/routes/welcome/+page.server.js
-import { supabase } from '$lib/supabaseClient'; // Adjust the path if necessary
+import { supabase } from "$lib/supabaseClient";
+import { redirect } from "@sveltejs/kit";
 
-export async function load({ locals }) {
-  const { user } = locals;
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ cookies }) {
+  const token = cookies.get("supabase_auth_token");
+  let user = null;
+  let errorMessage = null;
+
+  if (token) {
+    const { data, error } = await supabase.auth.getUser(token);
+    if (error) {
+      errorMessage = error.message;
+    } else if (data) {
+      user = data.user;
+    }
+  } else {
+    errorMessage = "No authentication token found.";
+  }
 
   if (!user) {
-    return {
-      status: 302,
-      redirect: '/login',
-    };
+    throw redirect(302, "/login");
   }
 
   return {
-    props: {
-      user,
-    },
+    user,
+    errorMessage,
   };
 }

@@ -1,7 +1,7 @@
 <script>
   import { supabase } from "$lib/supabaseClient";
   import { goto } from "$app/navigation";
-  import { session } from '../stores/sessionStore'; // Import the store
+  import "../app.css";
 
   let email = "";
   let password = "";
@@ -12,8 +12,8 @@
 
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
-      email: "test@lowie.xyz",
-      password: "password",
+      email: email,
+      password: password,
       options: {
         emailRedirectTo: "https://duckduckgo.com",
       },
@@ -40,13 +40,26 @@
       errorStatus = false;
       errorMessage = "Sign-in successful! Redirecting...";
 
-      // Store the session data
-      session.set(data.session);
+      // Send the session token to the server to set the cookie
+      const response = await fetch("/api/set-auth-cookie", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: data.session.access_token }),
+      });
 
-      // Delay the redirection
-      setTimeout(() => {
-        goto("/welcome");
-      }, 1000); // 2 seconds delay
+      if (response.ok) {
+        console.log("Cookie set successfully");
+
+        // Delay the redirection
+        setTimeout(() => {
+          console.log("Redirecting to /welcome");
+          goto("/welcome");
+        }, 1000); // 1-second delay
+      } else {
+        console.error("Failed to set cookie:", await response.text());
+      }
     }
   }
 

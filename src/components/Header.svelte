@@ -3,7 +3,6 @@
   let tabs = [
     { name: "Projects", link: "#projects" },
     { name: "About me", link: "#about" },
-    { name: "Main Menu", link: "/" },
   ];
 </script>
 
@@ -14,7 +13,7 @@
       : "py-6 bg-trasnpartent border-transpartent")}
 >
   <h1 class="font-medium cursor-pointer">
-    <a href="/"><b class="font-bold poppins">Lowie</b> Van Vyve</a>
+    <a href="/"><b class="font-bold poppins">Main</b> Menu</a>
   </h1>
   <div class="sm:flex ml-auto pr-4 items-center gap-4 hidden">
     {#each tabs as tab, index}

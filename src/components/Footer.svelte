@@ -5,10 +5,17 @@
     Connect with me &darr;
   </p>
   <div class="flex flex-col gap-4 items-center justify-center">
-    <p><b class="pr-2">Email</b> <a href="mailto:site@lowie.xyz">site@lowie.xyz</a></p>
+    <p>
+      <b class="pr-2">Email</b>
+      <a href="mailto:site@lowie.xyz">site@lowie.xyz</a>
+    </p>
     <p>
       <b class="pr-2">GitHub</b>
-      <a class="text-violet-400" target="_blank" href="https://github.com/lowie2727">
+      <a
+        class="text-violet-400"
+        target="_blank"
+        href="https://github.com/lowie2727"
+      >
         lowie2727<sup
           ><span class="text-xs scale-75 pl-0.5">
             <i
@@ -19,16 +26,20 @@
       </a>
     </p>
     <p>
-        <b class="pr-2">LinkedIn</b>
-        <a class="text-violet-400" target="_blank" href="https://youtu.be/dQw4w9WgXcQ">
-          lowie27<sup
-            ><span class="text-xs scale-75 pl-0.5">
-              <i
-                class="fa-solid fa-arrow-up-right-from-square text-xs scale-[75%]"
-              ></i>
-            </span></sup
-          >
-        </a>
-      </p>
+      <b class="pr-2">LinkedIn</b>
+      <a
+        class="text-violet-400"
+        target="_blank"
+        href="https://youtu.be/dQw4w9WgXcQ"
+      >
+        lowie27<sup
+          ><span class="text-xs scale-75 pl-0.5">
+            <i
+              class="fa-solid fa-arrow-up-right-from-square text-xs scale-[75%]"
+            ></i>
+          </span></sup
+        >
+      </a>
+    </p>
   </div>
 </footer>

@@ -1,8 +1,6 @@
 <script>
   export let y;
-  let tabs = [
-    { name: "About me", link: "/main" },
-  ];
+  let tabs = [{ name: "About me", link: "/main" }];
 </script>
 
 <header

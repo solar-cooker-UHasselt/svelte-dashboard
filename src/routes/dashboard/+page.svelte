@@ -35,16 +35,15 @@
   <div class="headerContainer">
     <h1 class="headerContainer">Todo List</h1>
     <div class="headerButtons">
-        <button
+      <button
         ><i class="fa-regular fa-floppy-disk"></i>
         <p>Save</p></button
       >
       <button
-      ><i class="fa-solid fa-right-from-bracket"></i>
-      <p>Logout</p></button
-    >
+        ><i class="fa-solid fa-right-from-bracket"></i>
+        <p>Logout</p></button
+      >
     </div>
-
   </div>
   <main>
     {#if todoList.length === 0}

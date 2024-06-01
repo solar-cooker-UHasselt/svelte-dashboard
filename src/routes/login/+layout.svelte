@@ -2,12 +2,12 @@
   import "../../app.css";
 </script>
 
-<div class="">
-  <a href="/" class=""><i class="fa-solid fa-house fa-3x p-10"></i></a>
+<div class="absolute top-4 left-4">
+  <a href="/" class=""><i class="text-white fa-solid fa-house fa-3x"></i></a>
 </div>
 
 <div
-  class="container relative flex flex-col max-w-[1400px] mx-auto w-full text-sm sm:text-base min-h-screen"
+  class="flex flex-col justify-center items-center w-full min-h-screen text-white bg-dark"
 >
   <slot />
 </div>

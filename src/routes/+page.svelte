@@ -9,16 +9,16 @@
 
 <section
   id="introPage"
-  class="grid grid-cols-1 lg:grid-cols-2 gap-10 py-8 sm:py-14"
+  class="grid grid-cols-1 gap-10 py-8 lg:grid-cols-2 sm:py-14"
 >
   <div
-    class="flex flex-col lg:justify-center text-center lg:text-left gap-6 md:gap-8 lg:gap-10"
+    class="flex flex-col gap-6 text-center lg:justify-center lg:text-left md:gap-8 lg:gap-10"
   >
-    <h2 class="font-semibold text-4xl sm:text5xl md:text-6xl">
-      Hi! Welcome to my <span class="poppins text-violet-400"></span>
+    <h2 class="text-4xl font-semibold sm:text5xl md:text-6xl">
+      Hi! Welcome to my <span class="text-violet-400 poppins"></span>
       <br />
       Full Stack Web
-      <span class="poppins text-violet-400">Developpement</span> site
+      <span class="text-violet-400 poppins">Developpement</span> site
     </h2>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, eaque iste.

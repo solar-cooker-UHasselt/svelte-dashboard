@@ -1,10 +1,10 @@
 <footer
-  class="py-20 sm:py-32 bg-black border-t border-solid border-violet-950 flex flex-col gap-4 sm:gap-8 justify-center items-center"
+  class="flex flex-col gap-4 justify-center items-center py-20 bg-black border-t border-solid sm:py-32 border-violet-950 sm:gap-8"
 >
-  <p class="px-4 py-2 bg-white text-slate-950 font-medium">
+  <p class="px-4 py-2 font-medium bg-white text-slate-950">
     Connect with me &darr;
   </p>
-  <div class="flex flex-col gap-4 items-center justify-center">
+  <div class="flex flex-col gap-4 justify-center items-center">
     <p>
       <b class="pr-2">Email</b>
       <a href="mailto:site@lowie.xyz">site@lowie.xyz</a>
@@ -17,7 +17,7 @@
         href="https://github.com/lowie2727"
       >
         lowie2727<sup
-          ><span class="text-xs scale-75 pl-0.5">
+          ><span class="pl-0.5 text-xs scale-75">
             <i
               class="fa-solid fa-arrow-up-right-from-square text-xs scale-[75%]"
             ></i>
@@ -33,7 +33,7 @@
         href="https://youtu.be/dQw4w9WgXcQ"
       >
         lowie27<sup
-          ><span class="text-xs scale-75 pl-0.5">
+          ><span class="pl-0.5 text-xs scale-75">
             <i
               class="fa-solid fa-arrow-up-right-from-square text-xs scale-[75%]"
             ></i>

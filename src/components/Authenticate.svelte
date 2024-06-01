@@ -8,6 +8,8 @@
   let errorMessage = "";
   let errorStatus = false;
   let register = false;
+  let passwordRef;
+  let confirmPassRef;
 
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
@@ -82,6 +84,31 @@
     register = !register;
     errorMessage = "";
   }
+
+  function handleEmailKeyDown(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      passwordRef.focus();
+    }
+  }
+
+  function handlePasswordKeyDown(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (register) {
+        confirmPassRef.focus();
+      } else {
+        handleAuthenticate();
+      }
+    }
+  }
+
+  function handleConfirmPassKeyDown(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleAuthenticate();
+    }
+  }
 </script>
 
 <div
@@ -111,6 +138,7 @@
         bind:value={email}
         type="email"
         placeholder="Email"
+        on:keydown={handleEmailKeyDown}
         class="p-3.5 w-full text-white bg-transparent border-none focus:border-none focus:outline-none"
       />
     </label>
@@ -126,6 +154,8 @@
         bind:value={password}
         type="password"
         placeholder="Password"
+        bind:this={passwordRef}
+        on:keydown={handlePasswordKeyDown}
         class="p-3.5 w-full text-white bg-transparent border-none focus:border-none focus:outline-none"
       />
     </label>
@@ -142,6 +172,8 @@
           bind:value={confirmPass}
           type="password"
           placeholder="Confirm Password"
+          bind:this={confirmPassRef}
+          on:keydown={handleConfirmPassKeyDown}
           class="p-3.5 w-full text-white bg-transparent border-none focus:border-none focus:outline-none"
         />
       </label>

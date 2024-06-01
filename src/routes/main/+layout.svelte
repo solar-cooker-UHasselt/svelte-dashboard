@@ -1,7 +1,7 @@
 <script>
   import Footer from "../../components/Footer.svelte";
-  import Header from "../../components/Header.svelte";
   import "../../app.css";
+  import PortfolioHeader from "../../components/PortfolioHeader.svelte";
   let y;
   let innerWidth = 0;
   let innerHeight = 0;
@@ -27,19 +27,8 @@
       <i class="fa-solid fa-arrow-up" />
     </button>
   </div>
-  <Header {y} {innerHeight} />
+  <PortfolioHeader {y} {innerHeight} />
   <slot />
   <Footer />
 </div>
 <svelte:window bind:scrollY={y} bind:innerHeight bind:innerWidth />
-
-<style>
-  .mainContainer {
-    min-height: 100vh;
-    background: linear-gradient(to right, #000428, #000046);
-    color: white;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-</style>

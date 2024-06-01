@@ -1,11 +1,12 @@
 <script>
-  import Header2 from "../components/Header2.svelte";
+  import RootHeader from "../components/RootHeader.svelte";
+  import Header2 from "../components/RootHeader.svelte";
   let y;
   let innerHeight;
   let innerWidth;
 </script>
 
-<Header2 {y} {innerHeight} />
+<RootHeader {y} {innerHeight} />
 
 <section
   id="introPage"
@@ -18,7 +19,7 @@
       Hi! Welcome to my <span class="text-violet-400 poppins"></span>
       <br />
       Full Stack Web
-      <span class="text-violet-400 poppins">Developpement</span> site
+      <span class="text-violet-400 poppins">Development</span> site
     </h2>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, eaque iste.

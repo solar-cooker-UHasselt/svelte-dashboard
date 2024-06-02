@@ -45,7 +45,7 @@
     {/if}
 
     <label
-      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+      class="relative border rounded-[5px] border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
         class={`absolute transition-all duration-300 text-white ${email ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
@@ -61,7 +61,7 @@
       />
     </label>
     <label
-      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+      class="relative border rounded-[5px] border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
         class={`absolute transition-all duration-300 text-white ${metaData.first_name ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
@@ -76,7 +76,7 @@
       />
     </label>
     <label
-      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+      class="relative border rounded-[5px] border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
         class={`absolute transition-all duration-300 text-white ${metaData.last_name ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}

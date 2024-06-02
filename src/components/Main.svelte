@@ -2,26 +2,38 @@
   import Step from "./Step.svelte";
 
   let steps = [
-    { name: "Project 1", icon: "fa-solid fa-cart-shopping" },
-    { name: "Project 2", icon: "fa-solid fa-cart-shopping" },
-    { name: "Project 3", icon: "fa-solid fa-cart-shopping" },
+    {
+      name: "Project 1",
+      icon: "fa-solid fa-cart-shopping",
+      href: "https://duckduckgo.com",
+    },
+    {
+      name: "Project 2",
+      icon: "fa-solid fa-cart-shopping",
+      href: "https://duckduckgo.com",
+    },
+    {
+      name: "Project 3",
+      icon: "fa-solid fa-cart-shopping",
+      href: "https://duckduckgo.com",
+    },
   ];
 
   let benefits = [
     {
-      name: "benifit1",
+      name: "benefit1",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl. A diam sollicitudin tempor id. Felis donec et odio pellentesque diam volutpat commodo. Posuere morbi leo urna molestie. Non pulvinar neque laoreet suspendisse. At augue eget arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Nec ullamcorper sit amet risus nullam eget felis eget. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Aliquet enim tortor at auctor.",
     },
     {
-      name: "benifit2",
+      name: "benefit2",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl. A diam sollicitudin tempor id. Felis donec et odio pellentesque diam volutpat commodo. Posuere morbi leo urna molestie. Non pulvinar neque laoreet suspendisse. At augue eget arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Nec ullamcorper sit amet risus nullam eget felis eget. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Aliquet enim tortor at auctor.",
     },
     {
-      name: "benifit3",
+      name: "benefit3",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl. A diam sollicitudin tempor id. Felis donec et odio pellentesque diam volutpat commodo. Posuere morbi leo urna molestie. Non pulvinar neque laoreet suspendisse. At augue eget arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Nec ullamcorper sit amet risus nullam eget felis eget. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Aliquet enim tortor at auctor.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl. A diam sollicitudin tempor id. Felis donec et odio pellentesque diam volutpat commodo. Posuere morbi leo urna molestie. Non pulvinar neque laoreet suspendisse. At augue eget arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Nec ullamcorper sit amet risus nullam eget felis eget. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Aliquet enim tortor at auctor.",
     },
   ];
 </script>
@@ -34,24 +46,23 @@
     <div
       class="flex flex-col gap-6 text-center lg:justify-center lg:text-left md:gap-8 lg:gap-10"
     >
-      <h2 class="text-4xl font-semibold sm:text5xl md:text-6xl">
+      <h2 class="text-4xl font-semibold sm:text-5xl md:text-6xl">
         Hi! I'm <span class="text-violet-400 poppins">Lowie</span> Van Vyve
         <br />
         Full Stack Web
-        <span class="text-violet-400 poppins">Developper</span>
+        <span class="text-violet-400 poppins">Developer</span>
       </h2>
       <p class="text-base sm:text-lg md:text-xl">
-        Read <span class="text-violet-400">this </span> you will not.
+        Read <span class="text-violet-400">this</span> you will not.
       </p>
-      <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         class="overflow-hidden relative px-6 py-3 mx-auto text-base bg-white rounded-full cursor-pointer blueShadow lg:mr-auto lg:ml-0 sm:text-lg md:text-xl poppins group text-slate-950"
-        href=""
+        href="https://duckduckgo.com"
         target="_blank"
       >
         <div
           class="absolute top-0 right-full z-0 w-full h-full bg-violet-400 opacity-20 duration-200 group-hover:translate-x-full"
-        />
+        ></div>
         <h4 class="relative z-9">Get in touch &rarr;</h4>
       </a>
     </div>
@@ -63,6 +74,7 @@
       />
     </div>
   </section>
+
   <section id="projects" class="flex flex-col gap-24 py-20 lg:py-32">
     <div class="flex flex-col gap-2 text-center">
       <h6 class="text-lg sm:text-xl md:text-2xl">
@@ -84,8 +96,8 @@
     <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-10">
       <Step step={steps[0]}>
         <p>
-          Lorem, ipsum dolor sit amet <storng class="text-violet-400"
-            >consectetur</storng
+          Lorem, ipsum dolor sit amet <strong class="text-violet-400"
+            >consectetur</strong
           > adipisicing elit. , necessitatibus enim non esse corrupti beatae minima
           praesentium et perspiciatis iure. Iste nisi numquam, harum voluptates impedit
           atque perspiciatis aliquid cumque?
@@ -93,8 +105,8 @@
       </Step>
       <Step step={steps[1]}>
         <p>
-          Lorem, ipsum dolor sit amet <storng class="text-violet-400"
-            >consectetur</storng
+          Lorem, ipsum dolor sit amet <strong class="text-violet-400"
+            >consectetur</strong
           > adipisicing elit. , necessitatibus enim non esse corrupti beatae minima
           praesentium et perspiciatis iure. Iste nisi numquam, harum voluptates impedit
           atque perspiciatis aliquid cumque?
@@ -102,8 +114,8 @@
       </Step>
       <Step step={steps[2]}>
         <p>
-          Lorem, ipsum dolor sit amet <storng class="text-violet-400"
-            >consectetur</storng
+          Lorem, ipsum dolor sit amet <strong class="text-violet-400"
+            >consectetur</strong
           > adipisicing elit. , necessitatibus enim non esse corrupti beatae minima
           praesentium et perspiciatis iure. Iste nisi numquam, harum voluptates impedit
           atque perspiciatis aliquid cumque?
@@ -124,9 +136,17 @@
         A bit <span class="text-violet-400 poppins"> about</span> me.
       </h3>
     </div>
-    <p class="mx-auto text-lg font-semibold poppins sm:text-xl md:text-2xl">
+    <p
+      class="mx-auto mb-0 text-lg font-semibold poppins sm:text-xl md:text-2xl"
+    >
       I am . . .
     </p>
+    <p
+      class="mx-auto mt-[-0.5rem] text-lg font-semibold poppins sm:text-xl md:text-2xl"
+    >
+      your father
+    </p>
+
     <div class="flex flex-col gap-20 w-full mx-auto max-w-[800px]">
       {#each benefits as benefit, index}
         <div class="flex gap-6 sm:gap-8">

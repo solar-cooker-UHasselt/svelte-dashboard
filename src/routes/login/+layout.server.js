@@ -6,7 +6,7 @@ export async function load({ cookies, url }) {
 
   // If the token exists and the user is on the login page, redirect to the welcome page
   if (token && url.pathname === "/login") {
-    throw redirect(302, "/welcome");
+    throw redirect(302, "/account");
   }
 
   // Return any necessary props (empty in this case)

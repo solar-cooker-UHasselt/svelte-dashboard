@@ -12,56 +12,69 @@
   let confirmPassRef;
 
   async function signUpNewUser() {
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        emailRedirectTo: "https://duckduckgo.com",
-      },
-    });
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          emailRedirectTo: "https://duckduckgo.com",
+        },
+      });
 
-    if (error) {
+      if (error) {
+        errorStatus = true;
+        errorMessage = error.message;
+      } else {
+        errorStatus = false;
+        errorMessage = "Please check your email to confirm your account";
+      }
+    } catch (error) {
       errorStatus = true;
-      errorMessage = error.message;
-    } else {
-      errorStatus = false;
-      errorMessage = "Please check your email to confirm your account";
+      errorMessage = "An unexpected error occurred.";
+      console.error("Sign-up error:", error);
     }
   }
 
   async function signInWithEmail() {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-    if (error) {
-      errorStatus = true;
-      errorMessage = error.message;
-    } else {
-      errorStatus = false;
-      errorMessage = "Sign-in successful! Redirecting...";
-
-      const response = await fetch("/api/set-auth-cookie", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token: data.session.access_token }),
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
       });
 
-      if (response.ok) {
-        console.log("Cookie set successfully");
-        setTimeout(() => {
-          console.log("Redirecting to /welcome");
-          goto("/welcome");
-        }, 1000);
+      if (error) {
+        errorStatus = true;
+        errorMessage = error.message;
       } else {
-        console.error("Failed to set cookie:", await response.text());
+        errorStatus = false;
+        errorMessage = "Sign-in successful! Redirecting...";
+
+        const response = await fetch("/api/set-auth-cookie", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: data.session.access_token }),
+        });
+
+        if (response.ok) {
+          console.log("Cookie set successfully");
+          setTimeout(() => {
+            console.log("Redirecting to /account");
+            goto("/account");
+          }, 1000);
+        } else {
+          console.error("Failed to set cookie:", await response.text());
+        }
       }
+    } catch (error) {
+      errorStatus = true;
+      errorMessage = "An unexpected error occurred.";
+      console.error("Sign-in error:", error);
     }
   }
 
-  async function handleAuthenticate() {
+  function handleAuthenticate() {
     if (!email || !password || (register && !confirmPass)) {
       errorStatus = true;
       errorMessage = "Please fill in all fields";
@@ -117,15 +130,15 @@
   <form class="flex flex-col gap-3.5 mx-auto w-full max-w-md">
     <h1 class="mb-4 text-5xl text-center">{register ? "Register" : "Login"}</h1>
     {#if errorMessage}
-      {#if errorStatus}
-        <p class="text-red-500 text-[0.9rem] text-center">{errorMessage}</p>
-      {:else}
-        <p class="text-green-500 text-[0.9rem] text-center">{errorMessage}</p>
-      {/if}
+      <p
+        class={`text-[0.9rem] text-center ${errorStatus ? "text-red-500" : "text-green-500"}`}
+      >
+        {errorMessage}
+      </p>
     {/if}
 
     <label
-      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+      class="relative rounded-md border border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
         class={`absolute transition-all duration-300 text-white ${email ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
@@ -140,8 +153,9 @@
         class="p-3.5 w-full text-white bg-transparent border-none focus:border-none focus:outline-none"
       />
     </label>
+
     <label
-      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+      class="relative rounded-md border border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
         class={`absolute transition-all duration-300 text-white ${password ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
@@ -157,9 +171,10 @@
         class="p-3.5 w-full text-white bg-transparent border-none focus:border-none focus:outline-none"
       />
     </label>
+
     {#if register}
       <label
-        class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+        class="relative rounded-md border border-solid border-[orange] focus-within:border-blue-500"
       >
         <p
           class={`absolute transition-all duration-300 text-white ${confirmPass ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
@@ -176,26 +191,30 @@
         />
       </label>
     {/if}
+
     <button
       on:click={handleAuthenticate}
       type="button"
-      class="bg-[navy] text-white cursor-pointer text-base px-0 py-3.5 rounded-[5px] border-none hover:bg-blue-700"
-      >Submit</button
+      class="px-0 py-3.5 text-base text-white rounded-md border-none cursor-pointer bg-[navy] hover:bg-blue-700"
     >
+      Submit
+    </button>
   </form>
+
   <div
-    class="overflow-hidden text-[0.9rem] flex flex-col gap-1 px-0 py-2 w-full max-w-md mx-auto"
+    class="flex flex-col gap-1 py-2 w-full max-w-md mx-auto overflow-hidden text-[0.9rem]"
   >
     <div class="flex gap-2 justify-center items-center my-0">
       <div class="flex-grow border-t border-white"></div>
       <span class="mx-2">Or</span>
       <div class="flex-grow border-t border-white"></div>
     </div>
+
     {#if register}
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <div class="flex gap-1 justify-center items-center mt-0">
         <p>Already have an account?</p>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <p on:click={handleRegister} class="text-cyan-500 cursor-pointer">
           Login
         </p>

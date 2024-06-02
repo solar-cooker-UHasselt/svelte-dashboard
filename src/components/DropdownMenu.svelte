@@ -3,35 +3,39 @@
   import { supabase } from "$lib/supabaseClient";
   let isLoggedIn = false;
   let menuOpen = false;
-  let loading = true; // Add loading state
+  let loading = true;
   let dropdownRef;
 
-  // Check if the user is logged in
-  async function checkUser() {
-    // Introduce a delay to simulate loading time
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    isLoggedIn = !!user;
-    loading = false;
+  async function checkUserStatus() {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      isLoggedIn = !!user;
+    } catch (error) {
+      console.error("Error checking user status:", error);
+    } finally {
+      loading = false;
+    }
   }
 
-  // Function to handle logging out
-  async function handleLogout() {
-    const { error } = await supabase.auth.signOut();
-    if (!error) {
-      // Call the logout endpoint to remove the cookie
-      const response = await fetch("/api/clear-auth-cookie", {
-        method: "POST",
-      });
-      if (response.ok) {
-        console.log("Cookie cleared successfully");
-        location.reload(); // Reload the page to reflect changes
-      } else {
-        console.error("Failed to clear cookie:", await response.text());
+  async function logout() {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        const response = await fetch("/api/clear-auth-cookie", {
+          method: "POST",
+        });
+        if (response.ok) {
+          console.log("Cookie cleared successfully");
+          location.reload();
+        } else {
+          console.error("Failed to clear cookie:", await response.text());
+        }
       }
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
   }
 
@@ -50,7 +54,7 @@
   }
 
   onMount(() => {
-    checkUser(); // Check user status on mount
+    checkUserStatus();
     if (typeof document !== "undefined") {
       document.addEventListener("click", handleClickOutside);
     }
@@ -65,7 +69,6 @@
 
 <div class="inline-block relative" bind:this={dropdownRef}>
   {#if loading}
-    <!-- Show a loading spinner or message while checking the user status -->
     <div class="loading-spinner">Loading...</div>
   {:else if isLoggedIn}
     <button
@@ -81,12 +84,13 @@
       <div
         class="absolute right-0 mt-2 w-48 text-white bg-gray-800 rounded-lg shadow-lg"
       >
-        <a href="/welcome" class="block px-4 py-2 text-sm hover:bg-gray-600"
+        <a href="/account" class="block px-4 py-2 text-sm hover:bg-gray-600"
           >Settings</a
         >
+        <!-- svelte-ignore a11y-invalid-attribute -->
         <a
           href="#"
-          on:click={handleLogout}
+          on:click={logout}
           class="block px-4 py-2 text-sm hover:bg-gray-600">Log out</a
         >
       </div>

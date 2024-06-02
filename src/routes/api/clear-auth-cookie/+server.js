@@ -1,6 +1,4 @@
 // src/routes/api/clear-auth-cookie/+server.js
-import { json } from "@sveltejs/kit";
-
 export async function POST() {
   return new Response(null, {
     status: 200,

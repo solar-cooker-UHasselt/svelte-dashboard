@@ -21,7 +21,7 @@
     {
       name: "benifit3",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl. A diam sollicitudin tempor id. Felis donec et odio pellentesque diam volutpat commodo. Posuere morbi leo urna molestie. Non pulvinar neque laoreet suspendisse. At augue eget arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Nec ullamcorper sit amet risus nullam eget felis eget. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Aliquet enim tortor at auctor.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl. A diam sollicitudin tempor id. Felis donec et odio pellentesque diam volutpat commodo. Posuere morbi leo urna molestie. Non pulvinar neque laoreet suspendisse. At augue eget arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Nec ullamcorper sit amet risus nullam eget felis eget. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Aliquet enim tortor at auctor.",
     },
   ];
 </script>
@@ -37,17 +37,16 @@
       <h2 class="text-4xl font-semibold sm:text5xl md:text-6xl">
         Hi! I'm <span class="text-violet-400 poppins">Lowie</span> Van Vyve
         <br />
-        Full Stack
+        Full Stack Web
         <span class="text-violet-400 poppins">Developper</span>
       </h2>
       <p class="text-base sm:text-lg md:text-xl">
-        My <span class="text-violet-400">favorite tech</span> includes Javascript
-        (NEXT.JS or SvelteKit) , TailwindCSS
+        Read <span class="text-violet-400">this </span> you will not.
       </p>
       <!-- svelte-ignore a11y-invalid-attribute -->
       <a
         class="overflow-hidden relative px-6 py-3 mx-auto text-base bg-white rounded-full cursor-pointer blueShadow lg:mr-auto lg:ml-0 sm:text-lg md:text-xl poppins group text-slate-950"
-        href="#"
+        href=""
         target="_blank"
       >
         <div

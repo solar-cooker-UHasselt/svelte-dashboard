@@ -1,6 +1,4 @@
 // src/routes/api/set-auth-cookie/+server.js
-import { json } from "@sveltejs/kit";
-
 export async function POST({ request }) {
   const { token } = await request.json();
 

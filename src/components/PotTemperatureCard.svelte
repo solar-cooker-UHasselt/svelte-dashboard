@@ -1,12 +1,5 @@
 <script>
-  //   export let potTemperatureData;
-  let potTemperatureData = {
-    temp: 95.3,
-    lastUpdated: "2024-04-16 00:00:00",
-    minTemp: 70.0,
-    maxTemp: 100.0,
-  };
-
+  export let potTemperatureData;
   export let index;
 </script>
 
@@ -16,7 +9,7 @@
   <div
     class="absolute top-2.5 right-2.5 px-6 py-1.5 text-xs font-bold text-black bg-red-600 rounded-full shadow-md"
   >
-    <i class="fas fa-utensils"></i> POT {index + 1} TEMP (°C)  <!-- Display the index -->
+    <i class="fas fa-utensils"></i> POT {index + 1} TEMP (°C) <!-- Display the index -->
   </div>
   <div class="flex flex-col flex-grow justify-center items-center">
     <p class="m-0 text-5xl font-bold text-white">

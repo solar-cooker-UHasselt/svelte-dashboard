@@ -1,11 +1,5 @@
 <script>
-  //   export let temperatureData;
-  let temperatureData = {
-    temp: 17.5,
-    lastUpdated: "2024-04-16 00:00:00",
-    minTemp: 12.3,
-    maxTemp: 12.7,
-  };
+  export let temperatureData;
 </script>
 
 <div

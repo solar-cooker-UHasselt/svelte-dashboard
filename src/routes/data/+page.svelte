@@ -25,33 +25,33 @@
     maxIrradiance: 1000,
   };
 
-  let potTemperatureData = [
-    {
-      temp: 95.3,
-      lastUpdated: "2024-04-16 00:00:00",
-      minTemp: 23.36,
-      maxTemp: 100.0,
-    },
-    {
-      temp: 90.1,
-      lastUpdated: "2024-04-16 00:00:00",
-      minTemp: 22.48,
-      maxTemp: 90.1,
-    },
-    {
-      temp: 25.1,
-      lastUpdated: "2024-04-16 00:00:00",
-      minTemp: -273.15,
-      maxTemp: 1500.23,
-    },
-  ];
+  let potTemperatureData1 = {
+    temp: 100.0,
+    lastUpdated: "2024-04-16 00:00:00",
+    minTemp: 100.0,
+    maxTemp: 100.0,
+  };
+
+  let potTemperatureData2 = {
+    temp: 100,
+    lastUpdated: "2024-04-16 00:00:00",
+    minTemp: 100.0,
+    maxTemp: 100.0,
+  };
+
+  let potTemperatureData3 = {
+    temp: -273.0,
+    lastUpdated: "2024-04-16 00:00:00",
+    minTemp: -273.15,
+    maxTemp: -273.0,
+  };
 </script>
 
 <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3">
   <OutsideTemperatureCard {temperatureData} />
   <WindSpeedCard {windSpeedData} />
   <SolarIrradianceCard {solarIrradianceData} />
-  {#each potTemperatureData as data, index}
-    <PotTemperatureCard {data} {index} />
-  {/each}
+  <PotTemperatureCard potTemperatureData={potTemperatureData1} index={0} />
+  <PotTemperatureCard potTemperatureData={potTemperatureData2} index={1} />
+  <PotTemperatureCard potTemperatureData={potTemperatureData3} index={2} />
 </div>

@@ -111,10 +111,12 @@
   }
 </script>
 
-<div class="flex flex-col justify-center items-center p-6 min-h-screen text-white bg-dark">
+<div
+  class="flex flex-col justify-start items-center p-6 pt-24 text-white bg-dark"
+>
   <form class="flex flex-col gap-3.5 mx-auto w-full max-w-md">
     <h1 class="mb-4 text-5xl text-center">{register ? "Register" : "Login"}</h1>
-    {#if errorMessage !== ""}
+    {#if errorMessage}
       {#if errorStatus}
         <p class="text-red-500 text-[0.9rem] text-center">{errorMessage}</p>
       {:else}
@@ -122,8 +124,14 @@
       {/if}
     {/if}
 
-    <label class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500">
-      <p class={`absolute transition-all duration-300 text-white ${email ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}>Email</p>
+    <label
+      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+    >
+      <p
+        class={`absolute transition-all duration-300 text-white ${email ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
+      >
+        Email
+      </p>
       <input
         bind:value={email}
         type="email"
@@ -132,8 +140,14 @@
         class="p-3.5 w-full text-white bg-transparent border-none focus:border-none focus:outline-none"
       />
     </label>
-    <label class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500">
-      <p class={`absolute transition-all duration-300 text-white ${password ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}>Password</p>
+    <label
+      class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+    >
+      <p
+        class={`absolute transition-all duration-300 text-white ${password ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
+      >
+        Password
+      </p>
       <input
         bind:value={password}
         type="password"
@@ -144,8 +158,14 @@
       />
     </label>
     {#if register}
-      <label class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500">
-        <p class={`absolute transition-all duration-300 text-white ${confirmPass ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}>Confirm Password</p>
+      <label
+        class="relative border rounded-[5px] border-solid border-[navy] focus-within:border-blue-500"
+      >
+        <p
+          class={`absolute transition-all duration-300 text-white ${confirmPass ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
+        >
+          Confirm Password
+        </p>
         <input
           bind:value={confirmPass}
           type="password"
@@ -156,23 +176,38 @@
         />
       </label>
     {/if}
-    <button on:click={handleAuthenticate} type="button" class="bg-[navy] text-white cursor-pointer text-base px-0 py-3.5 rounded-[5px] border-none hover:bg-blue-700">Submit</button>
+    <button
+      on:click={handleAuthenticate}
+      type="button"
+      class="bg-[navy] text-white cursor-pointer text-base px-0 py-3.5 rounded-[5px] border-none hover:bg-blue-700"
+      >Submit</button
+    >
   </form>
-  <div class="overflow-hidden text-[0.9rem] flex flex-col gap-1 px-0 py-2 w-full max-w-md mx-auto">
+  <div
+    class="overflow-hidden text-[0.9rem] flex flex-col gap-1 px-0 py-2 w-full max-w-md mx-auto"
+  >
     <div class="flex gap-2 justify-center items-center my-0">
       <div class="flex-grow border-t border-white"></div>
       <span class="mx-2">Or</span>
       <div class="flex-grow border-t border-white"></div>
     </div>
     {#if register}
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <div class="flex gap-1 justify-center items-center mt-0">
         <p>Already have an account?</p>
-        <p on:click={handleRegister} class="text-cyan-500 cursor-pointer">Login</p>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <p on:click={handleRegister} class="text-cyan-500 cursor-pointer">
+          Login
+        </p>
       </div>
     {:else}
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <div class="flex gap-1 justify-center items-center mt-0">
         <p>Don't have an account?</p>
-        <p on:click={handleRegister} class="text-cyan-500 cursor-pointer">Register</p>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <p on:click={handleRegister} class="text-cyan-500 cursor-pointer">
+          Register
+        </p>
       </div>
     {/if}
   </div>

@@ -1,6 +1,5 @@
 <script>
   import RootHeader from "../components/RootHeader.svelte";
-  import Header2 from "../components/RootHeader.svelte";
   let y;
   let innerHeight;
   let innerWidth;

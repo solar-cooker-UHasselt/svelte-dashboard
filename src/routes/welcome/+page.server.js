@@ -5,6 +5,7 @@ import { redirect } from "@sveltejs/kit";
 export async function load({ cookies }) {
   const token = cookies.get("supabase_auth_token");
   let user = null;
+  let userProfile = null;
   let errorMessage = null;
 
   if (token) {
@@ -13,6 +14,19 @@ export async function load({ cookies }) {
       errorMessage = error.message;
     } else if (data) {
       user = data.user;
+      
+      // Fetch user profile from the profiles table
+      const { data: profileData, error: profileError } = await supabase
+        .from("profiles")
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (profileError) {
+        errorMessage = profileError.message;
+      } else {
+        userProfile = profileData;
+      }
     }
   } else {
     errorMessage = "No authentication token found.";
@@ -24,6 +38,7 @@ export async function load({ cookies }) {
 
   return {
     user,
+    userProfile,
     errorMessage,
   };
 }

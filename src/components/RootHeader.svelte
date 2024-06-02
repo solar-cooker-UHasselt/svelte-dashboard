@@ -2,7 +2,8 @@
   export let y;
   let tabs = [
     { name: "Portfolio", link: "/portfolio" },
-    { name: "Data Visualisation", link: "/raw-data" },
+    { name: "Raw Data", link: "/raw-data" },
+    { name: "Data Visualisation", link: "/data" },
   ];
   import DropdownMenu from "./DropdownMenu.svelte";
   let menuOpen = false;

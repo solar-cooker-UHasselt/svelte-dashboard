@@ -33,7 +33,7 @@
   });
 </script>
 
-<p class="pt-10 mb-4 text-xl font-semibold">Data stream received:</p>
+<p class="px-5 pt-10 mb-4 text-xl font-semibold">Data stream received:</p>
 
 {#if allData && allData.length > 0}
   <div class="overflow-x-auto">

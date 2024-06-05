@@ -1,41 +1,28 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import { supabase } from "$lib/supabaseClient";
+  import { checkUserStatus } from "../utils/auth";
+  import { logout } from "../utils/auth";
+  import { goto } from "$app/navigation";
+
   let isLoggedIn = false;
   let menuOpen = false;
   let loading = true;
   let dropdownRef;
 
-  async function checkUserStatus() {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      isLoggedIn = !!user;
-    } catch (error) {
-      console.error("Error checking user status:", error);
-    } finally {
-      loading = false;
-    }
+  async function updateUserStatus() {
+    isLoggedIn = await checkUserStatus();
+    loading = false;
   }
 
-  async function logout() {
+  async function handleLogout() {
     try {
-      const { error } = await supabase.auth.signOut();
-      if (!error) {
-        const response = await fetch("/api/clear-auth-cookie", {
-          method: "POST",
-        });
-        if (response.ok) {
-          console.log("Cookie cleared successfully");
-          location.reload();
-        } else {
-          console.error("Failed to clear cookie:", await response.text());
-        }
-      }
+      await logout();
+      isLoggedIn = false;
+      goto('/');
     } catch (error) {
-      console.error("Error logging out:", error);
+      isLoggedIn = true;
+      console.error("Failed to logout:", error);
+      alert("Failed to logout. Please try again.");
     }
   }
 
@@ -54,7 +41,7 @@
   }
 
   onMount(() => {
-    checkUserStatus();
+    updateUserStatus();
     if (typeof document !== "undefined") {
       document.addEventListener("click", handleClickOutside);
     }
@@ -90,7 +77,7 @@
         <!-- svelte-ignore a11y-invalid-attribute -->
         <a
           href="#"
-          on:click={logout}
+          on:click={handleLogout}
           class="block px-4 py-2 text-sm hover:bg-gray-600">Log out</a
         >
       </div>

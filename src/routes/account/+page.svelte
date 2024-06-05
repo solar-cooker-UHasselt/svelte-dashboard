@@ -1,33 +1,22 @@
 <script>
-  import { supabase } from "$lib/supabaseClient";
+  import { updateProfile } from "../..//utils/auth";
 
   export let data;
-  let email = data.user.email;
+  let user = data.user;
+  let userId = user.id;
+  let userMetaData = data.userProfile;
+  // let metaData =
+
+  let email = user.email;
+  let newFirstName = userMetaData.first_name;
+  let newLastName = userMetaData.last_name;
   let errorMessage = data.errorMessage;
-  let metaData = data.userProfile;
-  let userId = data.user.id;
-  let newFirstName = metaData.first_name;
-  let newLastName = metaData.last_name;
-  let errorStatus = false;
+  let errorStatus;
 
-  console.log(data);
-
-  async function updateProfile() {
-    const { data, error } = await supabase
-      .from("profiles")
-      .update({
-        first_name: newFirstName,
-        last_name: newLastName,
-      })
-      .eq("id", userId);
-
-    if (error) {
-      errorStatus = true;
-      errorMessage = error.message;
-    } else {
-      errorStatus = false;
-      errorMessage = "Succes";
-    }
+  async function handleProfileUpdate() {
+    const result = await updateProfile(userId, newFirstName, newLastName);
+    errorStatus = result.errorStatus;
+    errorMessage = result.errorMessage;
   }
 </script>
 
@@ -64,7 +53,7 @@
       class="relative border rounded-[5px] border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
-        class={`absolute transition-all duration-300 text-white ${metaData.first_name ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
+        class={`absolute transition-all duration-300 text-white ${newFirstName ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
       >
         First Name
       </p>
@@ -79,7 +68,7 @@
       class="relative border rounded-[5px] border-solid border-[orange] focus-within:border-blue-500"
     >
       <p
-        class={`absolute transition-all duration-300 text-white ${metaData.last_name ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
+        class={`absolute transition-all duration-300 text-white ${newLastName ? "bg-[navy] -top-3 left-4 px-1 text-[0.8rem] rounded" : "top-3 left-3 text-[1rem] opacity-0"}`}
       >
         Last Name
       </p>
@@ -91,7 +80,7 @@
       />
     </label>
     <button
-      on:click={updateProfile}
+      on:click={handleProfileUpdate}
       type="button"
       class="bg-[navy] text-white cursor-pointer text-base px-0 py-3.5 rounded-[5px] border-none hover:bg-blue-700"
       >Update</button

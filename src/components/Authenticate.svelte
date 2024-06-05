@@ -1,6 +1,7 @@
 <script>
-  import { supabase } from "$lib/supabaseClient";
   import { goto } from "$app/navigation";
+  import { login } from "../utils/auth";
+  import { signUpNewUser } from "../utils/auth";
 
   let email = "";
   let password = "";
@@ -11,66 +12,18 @@
   let passwordRef;
   let confirmPassRef;
 
-  async function signUpNewUser() {
-    try {
-      const { error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          emailRedirectTo: "https://duckduckgo.com",
-        },
-      });
-
-      if (error) {
-        errorStatus = true;
-        errorMessage = error.message;
-      } else {
-        errorStatus = false;
-        errorMessage = "Please check your email to confirm your account";
-      }
-    } catch (error) {
-      errorStatus = true;
-      errorMessage = "An unexpected error occurred.";
-      console.error("Sign-up error:", error);
-    }
+  async function handleSignUp() {
+    const result = await signUpNewUser(email, password);
+    errorStatus = result.errorStatus;
+    errorMessage = result.errorMessage;
   }
 
-  async function signInWithEmail() {
+  async function handleEmailLogin() {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-
-      if (error) {
-        errorStatus = true;
-        errorMessage = error.message;
-      } else {
-        errorStatus = false;
-        errorMessage = "Sign-in successful! Redirecting...";
-
-        const response = await fetch("/api/set-auth-cookie", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token: data.session.access_token }),
-        });
-
-        if (response.ok) {
-          console.log("Cookie set successfully");
-          setTimeout(() => {
-            console.log("Redirecting to /account");
-            goto("/account");
-          }, 1000);
-        } else {
-          console.error("Failed to set cookie:", await response.text());
-        }
-      }
-    } catch (error) {
-      errorStatus = true;
-      errorMessage = "An unexpected error occurred.";
-      console.error("Sign-in error:", error);
+      await login(email, password);
+      goto("/account");
+    } catch {
+      errorMessage = "check the console for errors";
     }
   }
 
@@ -87,9 +40,9 @@
         errorMessage = "Passwords do not match";
         return;
       }
-      signUpNewUser();
+      handleSignUp();
     } else {
-      signInWithEmail();
+      handleEmailLogin();
     }
   }
 

@@ -18,7 +18,7 @@
     try {
       await logout();
       isLoggedIn = false;
-      goto('/');
+      goto("/");
     } catch (error) {
       isLoggedIn = true;
       console.error("Failed to logout:", error);

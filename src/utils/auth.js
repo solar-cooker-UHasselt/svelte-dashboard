@@ -8,8 +8,6 @@ export async function login(username, password) {
 
   if (error) {
     throw new Error("Login failed: " + error.message);
-  } else {
-    console.log("succesfully logged in");
   }
 }
 

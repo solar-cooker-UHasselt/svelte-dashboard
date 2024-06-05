@@ -5,7 +5,6 @@
     { name: "About me", link: "#about" },
   ];
 
-  import DropdownMenu from "./DropdownMenu.svelte";
   let menuOpen = false;
 
   function toggleMenu() {

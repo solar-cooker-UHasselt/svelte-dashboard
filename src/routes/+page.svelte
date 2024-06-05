@@ -5,7 +5,7 @@
   let innerWidth;
 </script>
 
-<RootHeader {y} {innerHeight} />
+<RootHeader {y} />
 
 <section
   id="introPage"
@@ -44,4 +44,4 @@
   </div>
 </section>
 
-<svelte:window bind:scrollY={y} bind:innerHeight bind:innerWidth />
+<svelte:window bind:scrollY={y} />

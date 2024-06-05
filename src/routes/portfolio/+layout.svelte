@@ -3,8 +3,6 @@
   import "../../app.css";
   import PortfolioHeader from "../../components/PortfolioHeader.svelte";
   let y;
-  let innerWidth = 0;
-  let innerHeight = 0;
 
   function goTop() {
     document.body.scrollIntoView();
@@ -27,8 +25,8 @@
       <i class="fa-solid fa-arrow-up" />
     </button>
   </div>
-  <PortfolioHeader {y} {innerHeight} />
+  <PortfolioHeader {y} />
   <slot />
   <Footer />
 </div>
-<svelte:window bind:scrollY={y} bind:innerHeight bind:innerWidth />
+<svelte:window bind:scrollY={y} />

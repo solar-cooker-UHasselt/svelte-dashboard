@@ -3,7 +3,7 @@
 </script>
 
 <div
-  class="flex relative flex-col justify-between p-5 pb-0 h-52 bg-blue-800 rounded-lg shadow-lg transition duration-300"
+  class="flex relative flex-col justify-between p-5 pb-0 h-52 bg-blue-800 rounded-lg shadow-lg transition duration-300 hover:bg-blue-700"
 >
   <div
     class="absolute top-2.5 right-2.5 px-6 py-1.5 text-xs font-bold text-black bg-blue-600 rounded-full shadow-md"

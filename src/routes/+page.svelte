@@ -9,18 +9,21 @@
 
 <section
   id="introPage"
-  class="grid grid-cols-1 gap-10 py-8 lg:grid-cols-2 sm:py-14"
+  class="grid relative grid-cols-1 gap-10 py-8 lg:grid-cols-2 sm:py-14"
 >
   <div
-    class="flex flex-col gap-6 text-center lg:justify-center lg:text-left md:gap-8 lg:gap-10"
+    class="absolute inset-0 bg-center bg-cover opacity-50"
+    style="background-image: url('/path-to-your-hero-image.jpg');"
+  ></div>
+  <div
+    class="flex relative z-10 flex-col gap-6 text-center lg:justify-center lg:text-left md:gap-8 lg:gap-10"
   >
-    <h2 class="text-4xl font-semibold sm:text5xl md:text-6xl">
-      Hi! Welcome to my <span class="text-violet-400 poppins"></span>
-      <br />
-      Full Stack Web
-      <span class="text-violet-400 poppins">Development</span> site
+    <h2 class="text-4xl font-semibold sm:text-5xl md:text-6xl">
+      Hi! Welcome to my <span class="text-violet-400 poppins"
+        >Full Stack Web</span
+      > Development site
     </h2>
-    <p>
+    <p class="text-lg leading-relaxed text-white md:text-xl">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, eaque iste.
       Commodi nemo sapiente necessitatibus modi veniam, maiores debitis
       recusandae nam cumque distinctio dolore! Qui magnam quibusdam veritatis
@@ -35,12 +38,22 @@
       sapiente fugit eum earum saepe eligendi esse, id provident distinctio
       nesciunt! Obcaecati similique quibusdam libero officia eveniet velit? Non!
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, similique
-      assumenda. Consequuntur magni nostrum non fugit, facilis sit amet possimus
-      consequatur ipsa, eveniet repudiandae, maxime autem nesciunt incidunt et
-      quae. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae at
-      doloremque quam! A nemo rerum ipsam sapiente qui exercitationem. Quod
-      illum error officia fugiat aut iure dolorum a magnam et.
+      assumenda. Consequuntur magni nostrum non.
     </p>
+    <div
+      class="flex flex-col gap-4 justify-center sm:flex-row lg:justify-start"
+    >
+      <button
+        class="px-6 py-3 font-semibold text-white bg-violet-600 rounded transition duration-300 hover:bg-violet-800"
+      >
+        Get Started
+      </button>
+      <button
+        class="px-6 py-3 font-semibold text-gray-800 bg-gray-200 rounded transition duration-300 hover:bg-gray-300"
+      >
+        Learn More
+      </button>
+    </div>
   </div>
 </section>
 

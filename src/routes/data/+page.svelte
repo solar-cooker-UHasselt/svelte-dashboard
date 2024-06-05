@@ -1,8 +1,8 @@
 <script>
-  import OutsideTemperatureCard from "../../components/OutsideTemperatureCard.svelte";
-  import WindSpeedCard from "../../components/WindSpeedCard.svelte";
-  import SolarIrradianceCard from "../../components/SolarIrradianceCard.svelte";
-  import PotTemperatureCard from "../../components/PotTemperatureCard.svelte";
+  import OutsideTemperatureCard from "../../components/sensors/OutsideTemperatureCard.svelte";
+  import WindSpeedCard from "../../components/sensors/WindSpeedCard.svelte";
+  import SolarIrradianceCard from "../../components/sensors/SolarIrradianceCard.svelte";
+  import PotTemperatureCard from "../../components/sensors/PotTemperatureCard.svelte";
 
   import { onMount } from "svelte";
 
@@ -13,6 +13,7 @@
   let minValues = [];
   let headers = [];
   let lastFetchTime = "";
+  let firstMeasurementTime = "";
 
   const csvHeaderString =
     "Year;Month;Day;Hour;Minute;Second;Outside temperature[°C];Wind speed [m/s];Air pressure (inside box) [hPa];Relative humidity (inside box) [%];Temperature inside pot 1 [°C];Temperature inside pot 2 [°C];Temperature inside pot 3 [°C];Solar irradiance [W/m²]";
@@ -35,6 +36,7 @@
       processColumns(allData);
       if (allData.length > 0) {
         lastFetchTime = formatDate(allData[allData.length - 1].slice(0, 6));
+        firstMeasurementTime = formatDate(allData[0].slice(0, 6));
         updateTemperatureData(allData);
         updateWindSpeedData(allData);
         updateSolarIrradianceData(allData);
@@ -46,7 +48,6 @@
   }
 
   function processColumns(data) {
-    // Initialize columnData and maxValues with the correct number of columns
     if (data.length > 0) {
       columnData = Array.from({ length: data[0].length }, () => []);
       maxValues = Array(data[0].length).fill(Number.NEGATIVE_INFINITY);
@@ -57,12 +58,10 @@
           const numericValue = Number(value);
           columnData[index].push(numericValue);
 
-          // Update max value for the column
           if (numericValue > maxValues[index]) {
             maxValues[index] = numericValue;
           }
 
-          // Update min value for the column
           if (numericValue < minValues[index]) {
             minValues[index] = numericValue;
           }
@@ -81,7 +80,7 @@
   }
 
   function updateTemperatureData(data) {
-    const tempColumnIndex = 6; // Assuming temperature is at index 6
+    const tempColumnIndex = 6;
     const temps = data.map((row) => Number(row[tempColumnIndex]));
     const currentTemp = temps[temps.length - 1];
     const minTemp = Math.min(...temps);
@@ -93,12 +92,10 @@
       minTemp: minTemp,
       maxTemp: maxTemp,
     };
-
-    console.log("Updated Temperature Data:", temperatureData);
   }
 
   function updateWindSpeedData(data) {
-    const windSpeedColumnIndex = 7; // Assuming wind speed is at index 7
+    const windSpeedColumnIndex = 7;
     const speeds = data.map((row) => Number(row[windSpeedColumnIndex]));
     const currentSpeed = speeds[speeds.length - 1];
     const minSpeed = Math.min(...speeds);
@@ -110,12 +107,10 @@
       minSpeed: minSpeed,
       maxSpeed: maxSpeed,
     };
-
-    console.log("Updated Wind Speed Data:", windSpeedData);
   }
 
   function updateSolarIrradianceData(data) {
-    const irradianceColumnIndex = 13; // Assuming solar irradiance is at index 13
+    const irradianceColumnIndex = 13;
     const irradiances = data.map((row) => Number(row[irradianceColumnIndex]));
     const currentIrradiance = irradiances[irradiances.length - 1];
     const minIrradiance = Math.min(...irradiances);
@@ -127,12 +122,10 @@
       minIrradiance: minIrradiance,
       maxIrradiance: maxIrradiance,
     };
-
-    console.log("Updated Solar Irradiance Data:", solarIrradianceData);
   }
 
   function updatePotTemperatureData(data) {
-    const potTempIndices = [10, 11, 12]; // Assuming pot temperatures are at indices 10, 11, and 12
+    const potTempIndices = [10, 11, 12];
 
     const updatePotData = (potIndex) => {
       const temps = data
@@ -177,13 +170,21 @@
     updatePotData(0);
     updatePotData(1);
     updatePotData(2);
+  }
 
-    console.log(
-      "Updated Pot Temperature Data:",
-      potTemperatureData1,
-      potTemperatureData2,
-      potTemperatureData3
-    );
+  function exportToCSV() {
+    let csvContent = "data:text/csv;charset=utf-8," + csvHeaderString + "\n";
+    allData.forEach((row) => {
+      csvContent += row.join(";") + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "sensor_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   onMount(() => {
@@ -194,9 +195,9 @@
     }
 
     initialFetch();
-    const interval = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+    const interval = setInterval(fetchData, 5000);
 
-    return () => clearInterval(interval); // Cleanup interval on component destroy
+    return () => clearInterval(interval);
   });
 
   let temperatureData = {
@@ -240,7 +241,42 @@
     minTemp: 0,
     maxTemp: 0,
   };
+
+  function calculateMeasuringTime(firstTime, lastTime) {
+    const firstDate = new Date(firstTime);
+    const lastDate = new Date(lastTime);
+    const diffTime = Math.abs(lastDate - firstDate);
+
+    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+    const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+    const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+    return `${diffHours} hours, ${diffMinutes} minutes, and ${diffSeconds} seconds`;
+  }
 </script>
+
+<div
+  class="flex flex-col justify-between p-4 mb-4 bg-transparent rounded shadow sm:flex-row"
+>
+  <p
+    class="inline-block px-4 py-2 mb-2 text-sm text-white bg-blue-500 rounded transition-colors duration-300 sm:mb-0 sm:mr-2 hover:bg-violet-800"
+  >
+    First Measurement Time: {firstMeasurementTime}
+  </p>
+  <p
+    class="inline-block px-4 py-2 mb-2 text-sm text-white bg-blue-500 rounded transition-colors duration-300 sm:mb-0 sm:mr-2 hover:bg-violet-800"
+  >
+    Last Fetch Time: {lastFetchTime}
+  </p>
+  <p
+    class="inline-block px-4 py-2 text-sm text-white bg-blue-500 rounded transition-colors duration-300 hover:bg-violet-800"
+  >
+    Measuring Time: {calculateMeasuringTime(
+      firstMeasurementTime,
+      lastFetchTime
+    )}
+  </p>
+</div>
 
 <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3">
   <OutsideTemperatureCard {temperatureData} />
@@ -250,3 +286,10 @@
   <PotTemperatureCard potTemperatureData={potTemperatureData2} index={1} />
   <PotTemperatureCard potTemperatureData={potTemperatureData3} index={2} />
 </div>
+
+<button
+  on:click={exportToCSV}
+  class="px-4 py-2 mt-4 mb-16 w-full text-white bg-blue-500 rounded sm:w-auto hover:bg-violet-800"
+>
+  Export to CSV
+</button>

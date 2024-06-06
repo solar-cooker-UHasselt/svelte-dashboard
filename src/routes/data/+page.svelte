@@ -289,7 +289,7 @@
 
 <button
   on:click={exportToCSV}
-  class="px-4 py-2 mt-4 mb-16 w-full text-white bg-blue-500 rounded sm:w-auto hover:bg-violet-800"
+  class="py-2 mx-4 mb-16 text-white bg-blue-500 rounded hover:bg-violet-800"
 >
   Export to CSV
 </button>

@@ -1,8 +1,6 @@
 <script>
   import RootHeader from "../components/RootHeader.svelte";
   let y;
-  let innerHeight;
-  let innerWidth;
 </script>
 
 <RootHeader {y} />
@@ -11,12 +9,9 @@
   id="introPage"
   class="grid relative grid-cols-1 gap-10 py-8 lg:grid-cols-2 sm:py-14"
 >
+  <div class="absolute inset-0 bg-center bg-cover opacity-50"></div>
   <div
-    class="absolute inset-0 bg-center bg-cover opacity-50"
-    style="background-image: url('/path-to-your-hero-image.jpg');"
-  ></div>
-  <div
-    class="flex relative z-10 flex-col gap-6 text-center lg:justify-center lg:text-left md:gap-8 lg:gap-10"
+    class="flex relative z-10 flex-col gap-6 p-10 text-left md:gap-8 lg:gap-10"
   >
     <h2 class="text-4xl font-semibold sm:text-5xl md:text-6xl">
       Hi! Welcome to my <span class="text-violet-400 poppins"

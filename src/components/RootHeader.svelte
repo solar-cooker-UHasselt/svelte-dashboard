@@ -14,7 +14,7 @@
 </script>
 
 <header
-  class={"sticky z-[10] top-0 duration-200 px-6 flex items-center justify-between border border-solid " +
+  class={"sticky z-20 top-0 duration-200 px-6 flex items-center justify-between border border-solid " +
     (y > 0
       ? "py-4 bg-slate-950 border-violet-950"
       : "py-6 bg-transparent border-white")}
@@ -43,7 +43,7 @@
 
 <!-- Fullscreen overlay menu for small screens -->
 <div
-  class={"fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-20 flex flex-col items-center justify-center " +
+  class={"fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-30 flex flex-col items-center justify-center " +
     (menuOpen ? "block" : "hidden")}
 >
   <button class="absolute top-4 right-4 text-white" on:click={toggleMenu}>

@@ -5,7 +5,6 @@
   let user = data.user;
   let userId = user.id;
   let userMetaData = data.userProfile;
-  // let metaData =
 
   let email = user.email;
   let newFirstName = userMetaData.first_name;

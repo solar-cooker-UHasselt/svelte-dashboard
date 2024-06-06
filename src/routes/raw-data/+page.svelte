@@ -38,7 +38,6 @@
   }
 
   function processColumns(data) {
-    // Initialize columnData and maxValues with the correct number of columns
     if (data.length > 0) {
       columnData = Array.from({ length: data[0].length }, () => []);
       maxValues = Array(data[0].length).fill(Number.NEGATIVE_INFINITY);
@@ -49,12 +48,10 @@
           const numericValue = Number(value);
           columnData[index].push(numericValue);
 
-          // Update max value for the column
           if (numericValue > maxValues[index]) {
             maxValues[index] = numericValue;
           }
 
-          // Update min value for the column
           if (numericValue < minValues[index]) {
             minValues[index] = numericValue;
           }
@@ -80,9 +77,9 @@
     }
 
     initialFetch();
-    const interval = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+    const interval = setInterval(fetchData, 5000);
 
-    return () => clearInterval(interval); // Cleanup interval on component destroy
+    return () => clearInterval(interval);
   });
 </script>
 

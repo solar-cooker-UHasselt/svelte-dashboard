@@ -1,4 +1,3 @@
-// src/routes/api/set-auth-cookie/+server.js
 export async function POST({ request }) {
   const { token } = await request.json();
 

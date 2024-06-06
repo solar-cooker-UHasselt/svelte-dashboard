@@ -1,16 +1,14 @@
 import pkg from "papaparse";
 const { parse } = pkg;
 
-let allData = []; // Store all incoming data
+let allData = [];
 
 export async function POST({ request }) {
   try {
-    const csvData = await request.text(); // Get CSV data as text
+    const csvData = await request.text();
 
-    // Parse CSV data
-    const parsedData = parse(csvData, { header: false }); // Set header to false if there is no header row
+    const parsedData = parse(csvData, { header: false });
 
-    // Append parsed data to allData
     allData.push(...parsedData.data);
 
     const responseBody = {
@@ -37,7 +35,7 @@ export async function GET() {
   try {
     const responseBody = {
       message: "Current data",
-      receivedData: allData, // Return all received data
+      receivedData: allData,
     };
 
     return new Response(JSON.stringify(responseBody), {

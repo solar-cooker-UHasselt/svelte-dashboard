@@ -9,7 +9,7 @@
   <div
     class="absolute top-2.5 right-2.5 px-6 py-1.5 text-xs font-bold text-black bg-red-600 rounded-full shadow-md"
   >
-    <i class="fas fa-utensils"></i> POT {index + 1} TEMP (°C) <!-- Display the index -->
+    <i class="fas fa-utensils"></i> POT {index + 1} TEMP (°C)
   </div>
   <div class="flex flex-col flex-grow justify-center items-center">
     <p class="m-0 text-5xl font-bold text-white">

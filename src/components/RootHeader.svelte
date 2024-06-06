@@ -4,6 +4,7 @@
     { name: "Portfolio", link: "/portfolio" },
     { name: "Raw Data", link: "/raw-data" },
     { name: "Data Visualisation", link: "/data" },
+    { name: "Contact", link: "/contact" },
   ];
   import DropdownMenu from "./DropdownMenu.svelte";
   let menuOpen = false;
@@ -33,22 +34,20 @@
     <DropdownMenu />
     <button class="text-white sm:hidden" on:click={toggleMenu}>
       {#if menuOpen}
-        <i class="fas fa-times"></i> <!-- Font Awesome close icon -->
+        <i class="fas fa-times"></i>
       {:else}
-        <i class="fas fa-bars"></i> <!-- Font Awesome menu icon -->
+        <i class="fas fa-bars"></i>
       {/if}
     </button>
   </div>
 </header>
 
-<!-- Fullscreen overlay menu for small screens -->
 <div
   class={"fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-30 flex flex-col items-center justify-center " +
     (menuOpen ? "block" : "hidden")}
 >
   <button class="absolute top-4 right-4 text-white" on:click={toggleMenu}>
     <i class="fas fa-times"></i>
-    <!-- Font Awesome close icon -->
   </button>
   <h1 class="text-lg">--- Website content ---</h1>
   {#each tabs as tab, index}

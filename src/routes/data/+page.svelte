@@ -243,6 +243,9 @@
   };
 
   function calculateMeasuringTime(firstTime, lastTime) {
+    if (firstTime === "" || lastTime === "") {
+      return `0 hours, 0 minutes, and 0 seconds`;
+    }
     const firstDate = new Date(firstTime);
     const lastDate = new Date(lastTime);
     const diffTime = Math.abs(lastDate - firstDate);
@@ -261,12 +264,14 @@
   <p
     class="inline-block px-4 py-2 mb-2 text-sm text-white bg-blue-500 rounded transition-colors duration-300 sm:mb-0 sm:mr-2 hover:bg-violet-800"
   >
-    First Measurement Time: {firstMeasurementTime}
+    First Measurement Time: {firstMeasurementTime
+      ? firstMeasurementTime
+      : "N/A"}
   </p>
   <p
     class="inline-block px-4 py-2 mb-2 text-sm text-white bg-blue-500 rounded transition-colors duration-300 sm:mb-0 sm:mr-2 hover:bg-violet-800"
   >
-    Last Fetch Time: {lastFetchTime}
+    Last Fetch Time: {lastFetchTime ? lastFetchTime : "N/A"}
   </p>
   <p
     class="inline-block px-4 py-2 text-sm text-white bg-blue-500 rounded transition-colors duration-300 hover:bg-violet-800"

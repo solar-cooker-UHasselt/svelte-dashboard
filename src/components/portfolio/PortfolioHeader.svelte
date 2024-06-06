@@ -31,9 +31,9 @@
   <div class="flex items-center ml-auto sm:hidden">
     <button class="text-white" on:click={toggleMenu}>
       {#if menuOpen}
-        <i class="fas fa-times"></i> <!-- Font Awesome close icon -->
+        <i class="fas fa-times"></i>
       {:else}
-        <i class="fas fa-bars"></i> <!-- Font Awesome menu icon -->
+        <i class="fas fa-bars"></i>
       {/if}
     </button>
   </div>
@@ -46,7 +46,6 @@
 >
   <button class="absolute top-4 right-4 text-white" on:click={toggleMenu}>
     <i class="fas fa-times"></i>
-    <!-- Font Awesome close icon -->
   </button>
   <h1 class="text-lg">--- Page navigation ---</h1>
   {#each tabs as tab, index}

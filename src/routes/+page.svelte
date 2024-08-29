@@ -19,7 +19,7 @@
       > Development site
     </h2>
     <p class="text-lg leading-relaxed text-white md:text-xl">
-      Here you can find different data for weather stations around the <span class="text-violet-400 poppins">globe</span>.
+      Here you can find different data for weather stations around the <span class="text-violet-400 poppins">globe</span> (read a few in Europe).
     </p>
     <div
       class="flex flex-col gap-4 justify-center sm:flex-row lg:justify-start"

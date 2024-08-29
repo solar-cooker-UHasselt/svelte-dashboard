@@ -1,7 +1,7 @@
 <script>
   export let y;
   let tabs = [
-    { name: "Weather Stations", link: "/location-overview" },
+    { name: "Weather", link: "/location-overview" },
     { name: "Contact", link: "/contact" },
   ];
   import DropdownMenu from "./DropdownMenu.svelte";

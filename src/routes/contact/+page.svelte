@@ -1,7 +1,7 @@
 <div class="flex flex-col text-white">
   <main class="flex flex-col items-center px-4 py-12">
     <h2 class="mb-4 text-4xl font-bold">Contact</h2>
-    <p class="mb-12 text-xl">Hire me to make your site!</p>
+    <p class="mb-12 text-xl">Hire <span class="text-violet-400 poppins"><a href="/portfolio">me</a></span> to make your site!</p>
     <div class="flex flex-wrap gap-8 justify-center">
       <div class="p-6 w-full rounded-lg shadow-lg sm:w-auto">
         <h3 class="mb-4 text-2xl font-semibold">Location</h3>
@@ -11,7 +11,7 @@
       </div>
       <div class="p-6 w-full rounded-lg shadow-lg sm:w-auto">
         <p class="mb-2">+32 (0) 01 12 34 56</p>
-        <p class="mb-2">email@example.com</p>
+        <p class="mb-2"><a href="mailto:email@example.com">email@example.com</a></p>
       </div>
     </div>
 

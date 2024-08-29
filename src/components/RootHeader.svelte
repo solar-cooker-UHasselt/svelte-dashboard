@@ -1,9 +1,7 @@
 <script>
   export let y;
   let tabs = [
-    { name: "Portfolio", link: "/portfolio" },
-    { name: "Raw Data", link: "/raw-data" },
-    { name: "Data Visualisation", link: "/data" },
+    { name: "Weather Stations", link: "/location-overview" },
     { name: "Contact", link: "/contact" },
   ];
   import DropdownMenu from "./DropdownMenu.svelte";

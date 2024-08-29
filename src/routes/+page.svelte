@@ -7,7 +7,7 @@
 
 <section
   id="introPage"
-  class="grid relative grid-cols-1 gap-10 py-8 lg:grid-cols-2 sm:py-14"
+  class="grid relative grid-cols-1 gap-10 py-8 lg:grid-cols-1 sm:py-14"
 >
   <div class="absolute inset-0 bg-center bg-cover opacity-50"></div>
   <div
@@ -19,21 +19,7 @@
       > Development site
     </h2>
     <p class="text-lg leading-relaxed text-white md:text-xl">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, eaque iste.
-      Commodi nemo sapiente necessitatibus modi veniam, maiores debitis
-      recusandae nam cumque distinctio dolore! Qui magnam quibusdam veritatis
-      rerum eos! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      Fugiat excepturi, sunt quis aliquid et ex porro cupiditate sapiente. Sint
-      quae soluta voluptates modi, ullam assumenda quaerat! Accusamus id
-      possimus magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Veritatis fuga accusantium pariatur quia porro. Numquam ex veritatis
-      labore provident eum perferendis porro, eligendi necessitatibus deserunt,
-      accusamus, quas quo facilis molestiae. Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Quidem reprehenderit, exercitationem,
-      sapiente fugit eum earum saepe eligendi esse, id provident distinctio
-      nesciunt! Obcaecati similique quibusdam libero officia eveniet velit? Non!
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, similique
-      assumenda. Consequuntur magni nostrum non.
+      Here you can find different data for weather stations around the <span class="text-violet-400 poppins">globe</span>.
     </p>
     <div
       class="flex flex-col gap-4 justify-center sm:flex-row lg:justify-start"
@@ -41,12 +27,13 @@
       <button
         class="px-6 py-3 font-semibold text-white bg-violet-600 rounded transition duration-300 hover:bg-violet-800"
       >
-        Get Started
+        
+        <a href="/location-overview">Get Started</a>
       </button>
       <button
         class="px-6 py-3 font-semibold text-gray-800 bg-gray-200 rounded transition duration-300 hover:bg-gray-300"
       >
-        Learn More
+        <a href="https://en.wikipedia.org/wiki/Weather" target="_blank">Learn More About Weather</a>
       </button>
     </div>
   </div>

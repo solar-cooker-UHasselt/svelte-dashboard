@@ -1,6 +1,5 @@
 <script>
   import "../app.css";
-    let y;
 </script>
 
 <div
@@ -8,4 +7,3 @@
 >
   <slot />
 </div>
-<svelte:window bind:scrollY={y} />
